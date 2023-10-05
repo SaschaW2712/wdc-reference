@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset = "UTF-8">
+    <title>Calendar App | Page Name</title>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Chelsea+Market|Roboto">
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+    <script src="/vueobjects/event.js" defer></script>
+    <script src="https://github.com/adamgibbons/ics"></script>
+</head>
+
+<body>
+    <!-- Header contains Logo, Navigation Bar with tabs: Event (Users) Account-->
+    <header>
+        <div id="logo">Calendar App</div>
+        <div id="navigation">
+            <div class="max-content-width">
+                <ul>
+                    <li class="active"><a href="events">Events</a></li>
+                    <li class="float-right"><a href="account">Account</a></li>
+                  </ul>
+            </div>
+        </div>
+    </header>
+
+    <main id="vue_event">
+
+        <div class="nav-button">
+            <a href="/user/events/" class="float-left">Back</a>
+        </div>
+
+        <h2>Event Details</h2>
+
+        <div id="event-details">
+            <div class="labelled-text-view">
+                <label for="event_name" class="labelled-text-view-label">Event Name</label>
+                <!-- <input type="text" class="labelled-text-entry-input" name="event_name" v-model="event_name"/> -->
+                <span class="labelled-text-view-text" name="event_name">{{event_name}}</span>
+            </div>
+            <div class="labelled-text-view">
+                <label for="event_descr" class="labelled-text-view-label">Description</label>
+                <!-- <textarea rows="4" cols="60" class="labelled-text-entry-input" name="event_descr" v-model="event_descr"></textarea> -->
+                <span class="labelled-text-view-text" name="event_descr">{{event_descr}}</span>
+            </div>
+            <div class="labelled-text-view address-top">
+                <label for="event_location" class="labelled-text-view-label">Location</label>
+                <!-- <textarea rows="4" cols="60" class="labelled-text-entry-input" name="event_descr" v-model="event_descr"></textarea> -->
+                <span class="labelled-text-view-text" name="event_location">{{event_addr_street}}</span>
+            </div>
+            <div class="labelled-text-view address" v-if="event_addr_street_2 !== ''">
+                <label for="event_location" class="labelled-text-view-label"></label>
+                <!-- <textarea rows="4" cols="60" class="labelled-text-entry-input" name="event_descr" v-model="event_descr"></textarea> -->
+                <span class="labelled-text-view-text" name="event_location">{{event_addr_street_2}}</span>
+            </div>
+            <div class="labelled-text-view address" v-if="event_addr_city !== ''">
+                <label for="event_location" class="labelled-text-view-label"></label>
+                <!-- <textarea rows="4" cols="60" class="labelled-text-entry-input" name="event_descr" v-model="event_descr"></textarea> -->
+                <span class="labelled-text-view-text" name="event_location">{{event_addr_city}}</span>
+            </div>
+            <div class="labelled-text-view address" v-if="event_addr_state !== '' && event_addr_postcode !== ''">
+                <label for="event_location" class="labelled-text-view-label"></label>
+                <!-- <textarea rows="4" cols="60" class="labelled-text-entry-input" name="event_descr" v-model="event_descr"></textarea> -->
+                <span class="labelled-text-view-text" name="event_location">{{event_addr_state + " " + event_addr_postcode}}</span>
+            </div>
+            <div class="labelled-text-view address" v-if="event_addr_state !== '' && event_addr_postcode == ''">
+                <label for="event_location" class="labelled-text-view-label"></label>
+                <!-- <textarea rows="4" cols="60" class="labelled-text-entry-input" name="event_descr" v-model="event_descr"></textarea> -->
+                <span class="labelled-text-view-text" name="event_location">{{event_addr_state}}</span>
+            </div>
+            <div class="labelled-text-view address" v-if="event_addr_state == '' && event_addr_postcode !== ''">
+                <label for="event_location" class="labelled-text-view-label"></label>
+                <!-- <textarea rows="4" cols="60" class="labelled-text-entry-input" name="event_descr" v-model="event_descr"></textarea> -->
+                <span class="labelled-text-view-text" name="event_location">{{event_addr_postcode}}</span>
+            </div>
+            <div class="labelled-text-view address-bottom" v-if="event_addr_country !== ''">
+                <label for="event_location" class="labelled-text-entry-label"></label>
+                <!-- <textarea rows="4" cols="60" class="labelled-text-entry-input" name="event_descr" v-model="event_descr"></textarea> -->
+                <span class="labelled-text-view-text" name="event_location">{{event_addr_country}}</span>
+            </div>
+            <div class="labelled-text-view">
+                <label for="event_date" class="labelled-text-view-label">Date</label>
+                <!-- <textarea rows="4" cols="60" class="labelled-text-entry-input" name="event_descr" v-model="event_descr"></textarea> -->
+                <span class="labelled-text-view-text" name="event_date">{{event_date}}</span>
+            </div>
+            <div class="labelled-text-view">
+                <label for="event_time" class="labelled-text-view-label">Time</label>
+                <!-- <textarea rows="4" cols="60" class="labelled-text-entry-input" name="event_descr" v-model="event_descr"></textarea> -->
+                <span class="labelled-text-view-text" name="event_time">{{event_time}}</span>
+            </div>
+        </div>
+        <br/>
+
+        <!-- <div id="event-details">
+            <table style="text-align:center">
+                <tr>
+                    <td>
+                        <p class="labelled-text-view-label">Event Name</p>
+                    </td>
+                    <td>
+                        <p class="labelled-text-view-text">{{event_name}}</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p class="labelled-text-view-label">Description</p>
+                    </td>
+                    <td>
+                        <p class="labelled-text-view-text">{{event_descr}}</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p class="labelled-text-view-label">Location</p>
+                    </td>
+                    <td>
+                        <span class="labelled-text-view-text">{{event_addr_street}}</span>
+                        <br>
+                        <span class="labelled-text-view-text">{{event_addr_street_2}}</span>
+                        <br>
+                        <span class="labelled-text-view-text">{{event_addr_city}}</span>
+                        <br>
+                        <span class="labelled-text-view-text">{{event_addr_state + " " + event_addr_postcode}}</span>
+                        <br>
+                        <span class="labelled-text-view-text">{{event_addr_country}}</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p class="labelled-text-view-label">Date</p>
+                    </td>
+                    <td>
+                        <p class="labelled-text-view-text">{{event_start_day + " " + event_start_date + " " + event_start_month + " " + event_start_year}}</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p class="labelled-text-view-label">Time</p>
+                    </td>
+                    <td>
+                        <p class="labelled-text-view-text">{{event_start_time + " - " + event_end_time}}</p>
+                    </td>
+                </tr>
+            </table>
+        </div> -->
+
+        <div>
+            <button class="btn-delete-event red-background" v-on:click="">Delete Event</button>
+            <button class="btn-add-to-calendar float-right" v-on:click="onClickAddToCalendar">Add to Calendar</button>
+        </div>
+    </main>
+
+    <footer></footer>
+
+</body>
+
+</html>

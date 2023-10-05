@@ -1,0 +1,483 @@
+
+/* Define Colour Variables that have global scope */
+:root {
+  --darkpurple: #504EA6;
+  --lightpurple: #E1E1FF;
+  --darkblue: #4570A1;
+  --lightblue: #B7E1FF;
+  --darkred: #AB2B51;
+  --lightred: #FDBFCE;
+}
+
+/* ------------------------ HTML Elements ------------------------ */
+* {
+  box-sizing: border-box;
+}
+
+html{
+  scroll-behavior: smooth
+}
+
+body {
+  font-family: 'Roboto', Helvetica, Verdana, sans-serif;
+  margin: 0px;
+}
+
+header {
+  width: 100%;
+  background-color: var(--lightpurple);
+}
+
+main {
+  max-width: 1040px;
+  margin: auto;
+  padding: 20px 0 60px 0;
+  font-size: 1.5em;
+}
+
+footer {
+  width: 100%;
+  background-color: var(--darkpurple);
+  height: 40px;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+}
+
+h2 {
+  font-family: 'Chelsea Market', 'American Typewriter', Georgia, serif;
+  color: var(--darkpurple);
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+h4 {
+  font-family: 'Chelsea Market', 'American Typewriter', Georgia, serif;
+  color: var(--darkpurple);
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+hr {
+  color: var(--darkpurple);
+}
+
+button {
+  background-color: var(--lightpurple);
+  font-size: 1em;
+  font-family: 'Chelsea Market', 'American Typewriter', Georgia, serif;
+  border: none;
+  padding: 20px;
+  border-radius: 30px;
+  margin: 10px;
+}
+
+button:hover {
+  background-color: var(--lightred);
+  color: black;
+}
+
+input {
+  font-family: 'Roboto', Helvetica, Verdana, sans-serif;
+  font-size: 0.8em;
+  border-color: var(--darkpurple);
+  border-radius: 30px;
+  padding: 10px;
+}
+
+select {
+  font-family: 'Roboto', Helvetica, Verdana, sans-serif;
+  font-size: 0.8em;
+  background-color: white;
+  border-color: var(--darkpurple);
+  border-radius: 30px;
+  padding: 10px;
+}
+
+textarea {
+  font-family: 'Roboto', Helvetica, Verdana, sans-serif;
+  font-size: 0.8em;
+  border-color: var(--darkpurple);
+  border-radius: 30px 0 0 30px;
+  padding: 10px;
+  resize: none;
+}
+
+div.nav-button {
+  height: 71.05px;
+}
+
+a {
+  font-family: 'Chelsea Market', 'American Typewriter', Georgia, serif;
+}
+
+tr {
+  height: 60px;
+}
+
+/* Reference: https://www.w3schools.com/howto/howto_css_switch.asp */
+.box {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.box input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+  border-radius: 34px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: var(--darkpurple);
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px var(--darkpurple);
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* ------------------------ classes ------------------------ */
+
+.max-content-width{
+  max-width: 1040px;
+  margin: auto;
+}
+
+.labelled-text-view {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding:20px;
+}
+
+.labelled-text-view-label {
+  font-weight: bold;
+  width: 200px;
+  padding-right: 10px;
+}
+
+.labelled-text-view-text {
+  width: 500px;
+}
+
+.address-top {
+  padding-top: 20px;
+  padding-bottom: 3px;
+}
+
+.address {
+  padding: 3px;
+}
+
+.address-bottom {
+  padding-top: 3px;
+  padding-bottom: 20px;
+}
+
+.active {
+  background-color: var(--darkblue);
+}
+
+.float-left{
+  float: left;
+}
+
+.float-right{
+  float: right;
+}
+
+.text-align-right{
+  text-align: right;
+}
+
+.text-align-left{
+  text-align: left;
+}
+
+.text-align-center{
+  text-align: center;
+}
+
+.red {
+  font-size: 0.8em;
+  color: var(--darkred);
+}
+
+.red-background {
+  background-color: var(--darkred);
+  color: white;
+}
+
+.nav-button a {
+  background-color: var(--lightpurple);
+  color: black;
+  text-decoration: none;
+  font-size: 1em;
+  padding: 20px;
+  display: block;
+  border-radius: 30px;
+}
+
+.nav-button a:hover {
+  background-color: var(--lightred);
+}
+
+/* --------- Flex Box Styling ---------- */
+.flex-container {
+  display: flex;
+  flex-direction: row;
+  padding: 10px 0 10px 0;
+}
+
+.flex-container-time {
+  display: flex;
+  justify-content: space-around;
+  align-items: center
+}
+
+.flex-quarter {
+  flex: 25%;
+}
+.flex-threequarters {
+  flex: 75%;
+}
+
+.flex-halves {
+  flex: 50%;
+}
+
+.flex-thirds {
+  flex: 33.333%;
+}
+
+
+/* Events */
+
+.event-row {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+
+.event-card {
+  text-align: center;
+  padding: 20px;
+  margin: 20px;
+  border-radius: 10px;
+  max-width: 300px;
+}
+
+.event-card > p {
+  font-size: 0.8em;
+}
+
+.event-card:hover {
+  background-color: var(--lightred);
+  color: black;
+}
+
+.attendee {
+  background-color: var(--lightpurple);
+}
+
+.organiser {
+  background-color: var(--lightblue);
+}
+
+
+
+table {
+  text-align: center
+}
+
+.td-left {
+  min-width: 200px;
+}
+
+
+/* Login / Signup / Input */
+.labelled-text-entry {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+}
+
+.labelled-text-entry-label {
+  width: 200px;
+  padding: 10px;
+}
+
+.labelled-text-entry-input {
+  width: 500px;
+}
+
+.labelled-text-entry-input-small {
+  width: 245px;
+}
+
+.back-forward-btn-group {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.login-landing-btns {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.login-landing-button {
+  width: 300px;
+  margin: 10px 0px 10px 10px;
+  text-align: center;
+}
+
+.login-button {
+  margin: 10px;
+}
+
+/* Time Availablity Table */
+
+.time-table {
+  width: 90%;
+  /* float: left; */
+}
+
+.time-time {
+  vertical-align: top;
+}
+
+.time-cell{
+  display: table-cell;
+  background-color: var(--lightpurple);
+}
+
+.time-cell-avail{
+  display: table-cell;
+  background-color: #43438E;
+}
+
+.time-explain{
+  width: 50%;
+  display: table-cell;
+  background-color: var(--lightpurple);
+}
+
+.selected{
+  background-color: var(--darkpurple);
+}
+
+.chosen{
+  background-color: var(--darkblue);
+}
+
+/* Email Card */
+.email-row{
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+
+.email-card {
+  text-align: center;
+  background-color: #E1E1FF;
+  padding-left: 20px;
+  margin: 10px;
+  border-radius: 10px;
+}
+
+.email-card > button {
+  padding: 15px;
+  margin: 0px;
+  border-radius: 10px;
+}
+
+.close {
+  text-align: right
+}
+
+.hidden-until-click-show {
+  display: none;
+}
+
+/* ------------------------ ids ------------------------ */
+#logo {
+  font-family: 'Chelsea Market', 'American Typewriter', Georgia, serif;
+  font-size: 2.5em;
+  color: var(--darkpurple);
+  text-align: center;
+  height: 140px;
+  line-height: 140px;
+}
+
+/* Navigation Bar Items*/
+#navigation {
+  background-color: var(--darkpurple);
+  height: 70px;
+}
+
+#navigation ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+#navigation li {
+  float: left;
+}
+
+#navigation li.float-right {
+  float: right;
+}
+
+#navigation a {
+  line-height: 70px;
+  color: white;
+  text-decoration: none;
+  font-size: 2em;
+  padding: 0 10px 0 10px;
+  display: block;
+}
+
+#navigation li a:hover {
+  background-color: var(--darkred);
+}

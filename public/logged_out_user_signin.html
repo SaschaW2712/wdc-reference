@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset = "UTF-8">
+
+    <!-- Client id is in the content-->
+    <meta name="google-signin-client_id" content="627269652978-d02jdtbae1mpqgr3dbr1k2rlqo63tnsv.apps.googleusercontent.com">
+    <title>Calendar App | Sign In</title>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Chelsea+Market|Roboto">
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <script src="/vueobjects/signin.js" defer></script>
+</head>
+
+<body>
+    <!-- Header contains Logo, Navigation Bar with tabs: Event (Users) Account-->
+    <header>
+        <div id="logo">Calendar App</div>
+        <div id="navigation">
+            </div>
+        </div>
+    </header>
+
+    <main style="text-align:center" id="vue_signin">
+        <div id="manual-sign-in">
+
+            <h2>User Sign In</h2>
+            <hr>
+
+            <div class="text-align-center red">{{email_message}}</div>
+            <div class="labelled-text-entry">
+                <label for="username" class="labelled-text-entry-label">Email</label>
+                <input type="text" class="labelled-text-entry-input" name="email" v-model="email" v-on:input="validateEmail"/>
+            </div>
+
+            <div class="text-align-center red">{{password_message}}</div>
+            <div class="labelled-text-entry">
+                <label for="pwd" class="labelled-text-entry-label">Password</label>
+                <input type="password" class="labelled-text-entry-input" name="pwd" v-model="password" v-on:input="validatePassword"/>
+            </div>
+
+            <div class="back-forward-btn-group" style="display:flex; flex-direction:row; justify-content:center; align-items:center;">
+                <div class="nav-button">
+                    <a href="/" class="float-right">Back</a>
+                </div>
+                <button id="btn-forward" v-on:click="onClickUserSignIn">Log in</button>
+            </div>
+        </div>
+
+        <div id="other-sign-in">
+            <h2>OR</h2>
+            <hr>
+
+            <div class="login-landing-btns">
+                <!-- <button class="btn-center login-button" onclick="onClickUserSignInFacebook()">Sign up with Facebook</button> -->
+                <br/>
+                <html>
+                    <body>
+                      <div id="g_id_onload"
+                           data-client_id="627269652978-d02jdtbae1mpqgr3dbr1k2rlqo63tnsv.apps.googleusercontent.com"
+                           data-callback="handleCredentialResponse">
+                      </div>
+                      <div class="g_id_signin" data-type="standard"></div>
+                    </body>
+                  </html>
+                </div>
+    </main>
+
+
+
+    <footer></footer>
+
+</body>
+
+</html>

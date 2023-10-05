@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset = "UTF-8">
+    <title>Calendar App | Page Name</title>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Chelsea+Market|Roboto">
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+    <script src="/vueobjects/modify_event.js" defer></script>
+</head>
+
+<body>
+    <!-- Header contains Logo, Navigation Bar with tabs: Event (Users) Account-->
+    <header>
+        <div id="logo">Calendar App</div>
+        <div id="navigation">
+            <div class="max-content-width">
+                <ul>
+                    <li class="active"><a href="/admin/events">Events</a></li>
+                    <li><a href="/admin/users">Users</a></li>
+                    <li class="float-right"><a href="/admin/account">Account</a></li>
+                  </ul>
+            </div>
+        </div>
+    </header>
+
+    <main id="vue_modify_event">
+
+        <div class="nav-button">
+            <a href="/admin/events/" class="float-left">Back</a>
+        </div>
+
+        <h2>Update Plan</h2>
+        <hr/>
+        <div>
+            <div class="labelled-text-entry">
+                <label for="event_name" class="labelled-text-entry-label">Event Name</label>
+                <input type="text" class="labelled-text-entry-input" name="event_name" v-model="event_name"/>
+            </div>
+            <div class="labelled-text-entry">
+                <label for="event_descr" class="labelled-text-entry-label">Description</label>
+                <textarea rows="4" cols="60" class="labelled-text-entry-input" name="event_descr" v-model="event_descr"></textarea>
+            </div>
+            <div id="address">
+                <div class="labelled-text-entry">
+                    <label for="event_location" class="labelled-text-entry-label">Location</label>
+                    <input type="text" class="labelled-text-entry-input" name="event_location" placeholder="Street Address" v-model="event_addr_street"/>
+                </div>
+                <div class="labelled-text-entry">
+                    <label for="event_location" class="labelled-text-entry-label"></label>
+                    <input type="text" class="labelled-text-entry-input" name="event_location" placeholder="Address Line 2" v-model="event_addr_street_2"/>
+                </div>
+                <div class="labelled-text-entry">
+                    <label for="event_location" class="labelled-text-entry-label"></label>
+                    <input type="text" class="labelled-text-entry-input-small" name="event_location" placeholder="City" v-model="event_addr_city"/>
+                    <span style="width: 10px;"></span>
+                    <input type="text" class="labelled-text-entry-input-small" name="event_location" placeholder="State" v-model="event_addr_state"/>
+                </div>
+                <div class="labelled-text-entry">
+                    <label for="event_location" class="labelled-text-entry-label"></label>
+                    <input type="text" class="labelled-text-entry-input-small" name="event_location" placeholder="Post Code" v-model="event_addr_postcode"/>
+                    <span style="width: 10px;"></span>
+                    <input type="text" class="labelled-text-entry-input-small" name="event_location" placeholder="Country" v-model="event_addr_country"/>
+                </div>
+            </div>
+            <div class="labelled-text-entry">
+                <p class="labelled-text-entry-label">Link</p>
+                <p class="labelled-text-entry-input">https://www.google.com.au</p>
+            </div>
+        </div>
+
+        <h2>Invitees</h2>
+        <hr/>
+
+        <div class="labelled-text-entry">
+            <label for="email" class="labelled-text-entry-label">User Email</label>
+            <input type="email" class="labelled-text-entry-input" name="email" v-model="invitee_email"/>
+            <button v-on:click="addInvitee()">Add</button>
+        </div>
+
+        <br/>
+        <div class="email-row">
+            <div class="email-card" v-for="invitee in invitees">{{ invitee }}<button v-on:click="removeInvitee(invitee)">x</button></div>
+        </div>
+        <br/>
+
+        <h2>Choose Date and Time</h2>
+        <hr>
+        <div id="availablity">
+        <p class="text-align-center"> Select the times you want to have your event. The areas with the most saturated colour are the times where the largest number of people are available.</p>
+
+
+        <div class="flex-container-time">
+            <table class="time-table">
+                <tr>
+                    <td> </td>
+                    <td class="time-day" v-for="col in times_data[0]">
+                        <p>{{col.day}}</p>
+                    </td>
+                </tr>
+
+                <tr v-for="(row,i) in times_data">
+                    <td class="time-time">{{row[0].time}}</td>
+                    <td v-for="(cell,j) in row" class="time-cell-avail" v-bind:style="{opacity: cell.opacity}" v-bind:class="{chosen: cell.selected}" v-on:click="onClickSelect(i,j)"></td>
+                </tr>
+            </table>
+        </div>
+       <br/>
+
+<div class="flex-container">
+    <div class="flex-thirds">
+        <button class="btn-delete-plan red-background" v-on:click="onClickDeletePlanAdmin">Delete Plan</button>
+    </div>
+
+    <div class="flex-thirds text-align-center">
+        <button class="btn-finalise" v-on:click="onClickFinaliseEventAdmin">Finalise Event</button>
+    </div>
+
+    <div class="flex-thirds text-align-right">
+        <button class="btn-save" v-on:click="onClickUpdatePlanAdmin">Update Plan</button>
+    </div>
+</div>
+
+    </main>
+
+    <footer>
+
+
+
+    </footer>
+
+</body>
+
+</html>

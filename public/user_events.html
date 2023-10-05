@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset = "UTF-8">
+    <title>Calendar App | Events</title>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Chelsea+Market|Roboto">
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+    <!-- Dummy Data Vue -->
+    <!-- <script src="/vueobjects/events_dummy.js" defer></script> -->
+    <!-- Connected top Database Vue -->
+    <script src="/vueobjects/events.js" defer></script>
+</head>
+
+<body>
+    <!-- Header contains Logo, Navigation Bar with tabs: Event (Users) Account-->
+    <header>
+        <div id="logo">Calendar App</div>
+        <div id="navigation">
+            <div class="max-content-width">
+                <ul>
+                    <li class="active"><a href="/user/events">Events</a></li>
+                    <li class="float-right"><a href="/user/account">Account</a></li>
+                  </ul>
+            </div>
+        </div>
+    </header>
+
+    <main id="vue_events" style="text-align:center">
+        <div class="text-align-right">
+            <div class="nav-button">
+                <a href="/user/create_event" class="float-right">Create Event</a>
+            </div>
+        </div>
+
+        <div class="text-align-center" v-if="event_data===[]"><b>Loading data...</b></div>
+        <h2 style="margin-top: 0px;">Event Plans</h2>
+        <hr>
+        <p v-if="plan_data.length === 0">You have not created any event plans or been invited to one yet!</p>
+
+        <div class="plans-grid">
+            <div class="event-row">
+
+                <div v-for="(plan, index) in plan_data">
+                        <div v-bind:class="[event_card, flex_thirds, {attendee: !(userID == plan.organiser)}, {organiser: userID == plan.organiser}]" v-on:click="onClickPlanCard(plan.id, index)">
+                        <h4 class="event-title">{{plan.name}}</h4>
+                        <p v-if="!(userID == plan.organiser)">Invited to</p>
+                        <p v-if="(userID == plan.organiser)">Organising</p>
+                        <p>{{plan.date}}</p>
+                        <p>{{plan.time}}</p>
+                        </div>
+                </div>
+
+
+            </div>
+        </div>
+
+        <span style="padding:50dp"></span>
+        <h2>Finalised Events</h2>
+        <hr>
+
+        <p v-if="event_data.length === 0">Events that you have created or been invited to are not yet finalised!</p>
+
+        <div class="events-grid">
+            <div class="event-row">
+
+                <div v-for="(event, index) in event_data">
+                    <div v-bind:class="[event_card, flex_thirds, {attendee: !(userID == event.organiser)}, {organiser: userID == event.organiser}]" v-on:click="onClickPlanCard(event.id, index)">
+                    <h4 class="event-title">{{event.name}}</h4>
+                    <p v-if="!(userID == event.organiser)">Invited to</p>
+                    <p v-if="(userID == event.organiser)">Organising</p>
+                    <p>{{event.date}}</p>
+                    <p>{{event.time}}</p>
+                    </div>
+            </div>
+
+            </div>
+        </div>
+
+    </main>
+
+    <footer></footer>
+
+</body>
+
+</html>

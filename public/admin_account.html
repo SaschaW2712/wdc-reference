@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset = "UTF-8">
+    <title>Calendar App | Account</title>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Chelsea+Market|Roboto">
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+    <script src="/vueobjects/account_info.js" defer></script>
+</head>
+
+<body>
+    <!-- Header contains Logo, Navigation Bar with tabs: Event (Users) Account-->
+    <header>
+        <div id="logo">Calendar App</div>
+        <div id="navigation">
+            <div class="max-content-width">
+                <ul>
+                    <li><a href="/admin/events">Events</a></li>
+                    <li><a href="/admin/users">Users</a></li>
+                    <li class="float-right active"><a href="/admin/account">Account</a></li>
+                  </ul>
+            </div>
+        </div>
+    </header>
+
+    <main id="vue_user_info">
+        <h2>Account Information</h2>
+        <hr/>
+        <div class="flex-container">
+            <div class="flex-quarter"><b>Username</b></div>
+            <div class="flex-threequarters">{{user.username}}</div>
+        </div>
+        <div class="flex-container">
+            <div class="flex-quarter"><b>Email</b></div>
+            <div class="flex-threequarters">{{user.email}}</div>
+        </div>
+        <hr/>
+        <div class="flex-container">
+            <div class="flex-threequarters"><b>Manage admin information and account.</b></div>
+            <div class="flex-quarter">
+                <div class="nav-button">
+                    <a href="/admin/account/manage_account" class="float-right">Manage Account</a>
+                </div>
+            </div>
+        </div>
+        <div class="flex-container">
+            <div class="flex-threequarters"><b>Sign-up new admins.</b></div>
+            <div class="flex-quarter">
+                <div class="nav-button">
+                    <a href="/admin/account/signup_admin" class="float-right">Sign-up Admin</a>
+                </div>
+            </div>
+        </div>
+        <hr/>
+        <div class="text-align-center">
+            <button class="red-background" v-on:click="onClickSignOut">Sign Out</button>
+        </div>
+    </main>
+
+    <footer></footer>
+
+</body>
+
+</html>

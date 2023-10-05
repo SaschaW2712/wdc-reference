@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset = "UTF-8">
+    <title>Calendar App | Page Name</title>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Chelsea+Market|Roboto">
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+    <script src="/vueobjects/manage_info.js" defer></script>
+</head>
+
+<body>
+    <!-- Header contains Logo, Navigation Bar with tabs: Event (Users) Account-->
+    <header>
+        <div id="logo">Calendar App</div>
+        <div id="navigation">
+            <div class="max-content-width">
+                <ul>
+                    <li><a href="/admin/events">Events</a></li>
+                    <li class="active"><a href="/admin/users">Users</a></li>
+                    <li class="float-right"><a href="/admin/account">Account</a></li>
+                  </ul>
+            </div>
+        </div>
+    </header>
+
+    <main id="vue_manage_user_info">
+
+        <div class="nav-button">
+            <a href="/admin/users/" class="float-left">Back</a>
+        </div>
+
+        <h2>Manage User Information</h2>
+        <hr/>
+
+        <div class="labelled-text-entry">
+            <label for="username" class="labelled-text-entry-label">New Username</label>
+            <input type="text" class="labelled-text-entry-input" name="username" v-model="new_username"/>
+        </div>
+        <div class="labelled-text-entry">
+            <label for="email" class="labelled-text-entry-label">New Email</label>
+            <input type="email" class="labelled-text-entry-input" name="email" v-model="new_email"/>
+        </div>
+        <div class="labelled-text-entry">
+            <label for="new_pwd" class="labelled-text-entry-label">New Password</label>
+            <input type="password" class="labelled-text-entry-input" name="new_pwd" v-model="new_password"/>
+        </div>
+
+        <hr/>
+
+        <div class="labelled-text-entry">
+            <label for="admin_pwd" class="labelled-text-entry-label">Admin Password</label>
+            <input type="password" class="labelled-text-entry-input" name="admin_pwd" v-model="admin_password"/>
+        </div>
+
+        <div class="flex-container">
+            <div class="text-align-left flex-halves">
+                <button class="red-background" v-on:click="onClickDeleteUserAccount">Delete Account</button>
+            </div>
+            <div class="text-align-right flex-halves">
+                <button v-on:click="onClickUpdateUserInfo">Update User Information</button>
+            </div>
+        </div>
+    </main>
+
+    <footer></footer>
+
+</body>
+
+</html>

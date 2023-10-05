@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset = "UTF-8">
+    <title>Calendar App | Page Name</title>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Chelsea+Market|Roboto">
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+    <script src="/vueobjects/signup_admin.js" defer></script>
+</head>
+
+<body>
+    <!-- Header contains Logo, Navigation Bar with tabs: Event (Users) Account-->
+    <header>
+        <div id="logo">Calendar App</div>
+        <div id="navigation">
+            <div class="max-content-width">
+                <ul>
+                    <li><a href="/admin/events">Events</a></li>
+                    <li><a href="/admin/users">Users</a></li>
+                    <li class="float-right active"><a href="/admin/account">Account</a></li>
+                  </ul>
+            </div>
+        </div>
+    </header>
+
+    <main id="vue_signup_admin">
+
+        <div class="nav-button">
+            <a href="/admin/account/" class="float-left">Back</a>
+        </div>
+
+        <h2>Sign-up New Admin</h2>
+        <hr/>
+
+        <div class="labelled-text-entry">
+            <label for="username" class="labelled-text-entry-label">Username</label>
+            <input type="text" class="labelled-text-entry-input" name="username" v-model="username"/>
+        </div>
+        <div class="labelled-text-entry">
+            <label for="email" class="labelled-text-entry-label">Email</label>
+            <input type="email" class="labelled-text-entry-input" name="email" v-model="email"/>
+        </div>
+        <div class="labelled-text-entry">
+            <label for="new_pwd" class="labelled-text-entry-label">Password</label>
+            <input type="password" class="labelled-text-entry-input" name="new_pwd" v-model="password"/>
+        </div>
+
+        <hr/>
+
+        <div class="labelled-text-entry">
+            <label for="admin_pwd" class="labelled-text-entry-label">Admin Password</label>
+            <input type="password" class="labelled-text-entry-input" name="admin_pwd" v-model="admin_password"/>
+        </div>
+
+        <div class="text-align-right">
+            <button v-on:click="onClickSignUpAnAdmin">Sign-up Admin</button>
+        </div>
+    </main>
+
+    <footer></footer>
+
+</body>
+
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset = "UTF-8">
+    <title>Calendar App | Sign Up</title>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Chelsea+Market|Roboto">
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+    <script src="/javascripts/signInUpFuncs.js"></script>
+    <script src="/vueobjects/signup.js" defer></script>
+</head>
+
+<body>
+    <!-- Header contains Logo, Navigation Bar with tabs: Event (Users) Account-->
+    <header>
+        <div id="logo">Calendar App</div>
+        <div id="navigation">
+        </div>
+    </header>
+
+    <main style="text-align:center" id="vue_signup">
+        <div id="manual-sign-up">
+
+            <h2>User Sign Up</h2>
+            <hr>
+
+            <div class="text-align-center red">{{username_message}}</div>
+            <div class="labelled-text-entry">
+                <label for="username" class="labelled-text-entry-label">Username</label>
+                <input type="text" class="labelled-text-entry-input" name="username" v-model="username" v-on:input="validateUsername"/>
+            </div>
+
+            <div class="text-align-center red">{{email_message}}</div>
+            <div class="labelled-text-entry">
+                <label for="email" class="labelled-text-entry-label">Email</label>
+                <input type="text" class="labelled-text-entry-input" name="emai" v-model="email" v-on:input="validateEmail"/>
+            </div>
+
+            <div class="text-align-center red">{{password_message}}</div>
+            <div class="labelled-text-entry">
+                <label for="pwd" class="labelled-text-entry-label">Password</label>
+                <input type="password" class="labelled-text-entry-input" name="pwd" v-model="password" v-on:input="validatePassword"/>
+            </div>
+
+            <div class="back-forward-btn-group">
+                <div class="nav-button">
+                    <a href="/" class="float-right">Back</a>
+                </div>
+                <button id="btn-forward" v-on:click="onClickUserSignUpManual()" v-bind:disabled="disabled">Sign up</button>
+            </div>
+        </div>
+
+        <div id="other-sign-up">
+            <h2>OR</h2>
+            <hr>
+
+            <div class="login-landing-btns">
+                <button class="btn-center login-button" v-on:click="onClickUserSignUpFacebook()">Sign up with Facebook</button>
+                <br/>
+                <button class="btn-center login-button" v-on:click="onClickUserSignUpGoogle()">Sign up with Google</button>
+            </div>
+        </div>
+    </main>
+
+    <footer></footer>
+
+</body>
+
+</html>

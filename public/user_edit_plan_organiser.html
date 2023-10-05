@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset = "UTF-8">
+    <title>Calendar App | Page Name</title>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Chelsea+Market|Roboto">
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+    <!-- Dummy Data Vue -->
+    <!-- <script src="/vueobjects/modify_event_dummy.js" defer></script> -->
+    <!-- Connected top Database Vue -->
+    <script src="/vueobjects/modify_event.js" defer></script>
+
+</head>
+
+<body>
+    <!-- Header contains Logo, Navigation Bar with tabs: Event (Users) Account-->
+    <header>
+        <div id="logo">Calendar App</div>
+        <div id="navigation">
+            <div class="max-content-width">
+                <ul>
+                    <li class="active"><a href="/user/events">Events</a></li>
+                    <li class="float-right"><a href="/user/account">Account</a></li>
+                  </ul>
+            </div>
+        </div>
+    </header>
+
+    <main id="vue_modify_event">
+
+        <div class="nav-button">
+            <a href="/user/events/" class="float-left">Back</a>
+        </div>
+
+        <div class="text-align-center" v-if="event_name===''"><b>Loading data...</b></div>
+        <h2>Update Plan</h2>
+        <hr/>
+        <div>
+            <div v-if="event_name==''" class="text-align-center red">{{name_message}}</div>
+            <div class="text-align-center red">{{name_length_message}}</div>
+            <div class="labelled-text-entry">
+                <label for="event_name" class="labelled-text-entry-label">Event Name</label>
+                <input type="text" class="labelled-text-entry-input" name="event_name" v-model="event_name" v-on:input="validateName" v-bind:disabled="disabled"/>
+            </div>
+            <div class="text-align-center red">{{descr_message}}</div>
+            <div class="labelled-text-entry">
+                <label for="event_descr" class="labelled-text-entry-label">Description</label>
+                <textarea rows="4" cols="60" class="labelled-text-entry-input" name="event_descr" v-model="event_descr" v-on:input="validateDescription" v-bind:disabled="disabled"></textarea>
+            </div>
+
+            <div id="address">
+                <div v-if="event_addr_street ==''" class="text-align-center red">{{location_message}}</div>
+                <div class="text-align-center red">{{location_length_message}}</div>
+                <div class="labelled-text-entry">
+                    <label for="event_location" class="labelled-text-entry-label">Location</label>
+                    <input type="text" class="labelled-text-entry-input" name="event_location" placeholder="Street Address or Event Location" v-model="event_addr_street" v-on:input="validateStreet" v-bind:disabled="disabled"/>
+                </div>
+                <div class="labelled-text-entry">
+                    <label for="event_location" class="labelled-text-entry-label"></label>
+                    <input type="text" class="labelled-text-entry-input" name="event_location" placeholder="Address Line 2" v-model="event_addr_street_2" v-on:input="validateStreet_2" v-bind:disabled="disabled"/>
+                </div>
+                <div class="labelled-text-entry">
+                    <label for="event_location" class="labelled-text-entry-label"></label>
+                    <input type="text" class="labelled-text-entry-input-small" name="event_location" placeholder="City" v-model="event_addr_city" v-on:input="validateCity" v-bind:disabled="disabled"/>
+                    <span style="width: 10px;"></span>
+                    <input type="text" class="labelled-text-entry-input-small" name="event_location" placeholder="State" v-model="event_addr_state" v-on:input="validateState" v-bind:disabled="disabled"/>
+                </div>
+                <div class="labelled-text-entry">
+                    <label for="event_location" class="labelled-text-entry-label"></label>
+                    <input type="text" class="labelled-text-entry-input-small" name="event_location" placeholder="Post Code" v-model="event_addr_postcode" v-on:input="validatePostcode" v-bind:disabled="disabled"/>
+                    <span style="width: 10px;"></span>
+                    <input type="text" class="labelled-text-entry-input-small" name="event_location" placeholder="Country" v-model="event_addr_country" v-on:input="validateCountry" v-bind:disabled="disabled"/>
+                </div>
+            </div>
+            <!-- <div class="labelled-text-entry">
+                <label for="event_name" class="labelled-text-entry-label">Event Name</label>
+                <input type="text" class="labelled-text-entry-input" name="event_name" v-model="event_name"/>
+            </div>
+            <div class="labelled-text-entry">
+                <label for="event_descr" class="labelled-text-entry-label">Description</label>
+                <textarea rows="4" cols="60" class="labelled-text-entry-input" name="event_descr" v-model="event_descr"></textarea>
+            </div>
+            <div id="address">
+                <div class="labelled-text-entry">
+                    <label for="event_location" class="labelled-text-entry-label">Location</label>
+                    <input type="text" class="labelled-text-entry-input" name="event_location" placeholder="Street Address" v-model="event_addr_street"/>
+                </div>
+                <div class="labelled-text-entry">
+                    <label for="event_location" class="labelled-text-entry-label"></label>
+                    <input type="text" class="labelled-text-entry-input" name="event_location" placeholder="Address Line 2" v-model="event_addr_street_2"/>
+                </div>
+                <div class="labelled-text-entry">
+                    <label for="event_location" class="labelled-text-entry-label"></label>
+                    <input type="text" class="labelled-text-entry-input-small" name="event_location" placeholder="City" v-model="event_addr_city"/>
+                    <span style="width: 10px;"></span>
+                    <input type="text" class="labelled-text-entry-input-small" name="event_location" placeholder="State" v-model="event_addr_state"/>
+                </div>
+                <div class="labelled-text-entry">
+                    <label for="event_location" class="labelled-text-entry-label"></label>
+                    <input type="text" class="labelled-text-entry-input-small" name="event_location" placeholder="Post Code" v-model="event_addr_postcode"/>
+                    <span style="width: 10px;"></span>
+                    <input type="text" class="labelled-text-entry-input-small" name="event_location" placeholder="Country" v-model="event_addr_country"/>
+                </div>
+            </div> -->
+
+            <div class="labelled-text-entry">
+                <p class="labelled-text-entry-label">Link</p>
+                <p class="labelled-text-entry-input">https://project2207-code50-104963485-4j9pp75pg3v96-3000.githubpreview.dev/{{link}}</p>
+            </div>
+        </div>
+
+        <h2>Invitees</h2>
+        <hr/>
+
+        <div v-if="invitees.length==0" class="text-align-center red">{{invitee_message}}</div>
+        <div class="text-align-center red">{{email_message}}</div>
+        <div class="labelled-text-entry">
+            <label for="email" class="labelled-text-entry-label">User Email</label>
+            <input type="email" class="labelled-text-entry-input" name="email" v-model="invitee_email" v-on:input="validateEmail" v-bind:disabled="disabled"/>
+            <button v-on:click="addInvitee" >Add</button>
+        </div>
+
+        <!-- <div class="labelled-text-entry">
+            <label for="email" class="labelled-text-entry-label">User Email</label>
+            <input type="email" class="labelled-text-entry-input" name="email" v-model="invitee_email"/>
+            <button v-on:click="addInvitee()">Add</button>
+        </div> -->
+
+        <br/>
+        <div class="email-row">
+            <div class="email-card" v-for="invitee in invitees">{{ invitee }}<button v-on:click="removeInvitee(invitee)" v-bind:disabled="disabled">x</button></div>
+        </div>
+        <br/>
+
+        <!-- Hide Date and Time Details until user clicks button -->
+        <div v-if="hidden" class="text-align-center">
+            <hr>
+            <button v-on:click="onClickShowTimes" v-bind:disabled="disabled">Click here to choose times to finalise the plan</button>
+        </div>
+        <div v-bind:class="{'hidden-until-click-show': hidden}">
+            <h2>Choose Date and Time</h2>
+            <hr>
+            <div id="availablity">
+                <div class="flex-container text-align-center">
+                    <div class="flex-threequarters">
+                        <div>The areas with the most saturated colour are the times where the largest number of people are available.</div>
+                        <br/>
+                        <div style="position: sticky; top: 0;">{{message}}</div>
+                    </div>
+
+                    <div class="flex-quarter">
+                        <button v-on:click="onClickResetChosenTimes">Reset</button>
+                    </div>
+                </div>
+
+                <div style="width: 600px; margin: auto;">
+                    <table>
+                        <tr>
+                            <td></td>
+                            <td>&nbsp 0 available &nbsp</td>
+                            <td>&nbsp All available &nbsp</td>
+                            <td>&nbsp Chosen times &nbsp</td>
+                        </tr>
+                        <tr>
+                            <td>&nbsp<b>Key</b>&nbsp</td>
+                            <td class="time-cell selected" v-bind:style="{opacity: zero_opacity}"></td>
+                            <td class="time-cell selected" v-bind:style="{opacity: all_opacity}"></td>
+                            <td class="time-cell chosen"></td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="flex-container-time">
+                    <table class="time-table">
+                        <tr>
+                            <td> </td>
+                            <td class="time-day" v-for="col in times_data[0]">
+                                <p>{{col.day}}</p>
+                            </td>
+                        </tr>
+
+                        <tr v-for="(row,i) in times_data">
+                            <td class="time-time">{{row[0].time}}</td>
+                            <td v-for="(cell,j) in row" class="time-cell-avail" v-bind:style="{opacity: cell.opacity}" v-bind:class="{chosen: cell.selected}" v-on:click="onClickSelect(i,j)"></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <br/>
+
+        <div class="text-align-center">{{update_event_message}}</div>
+        <div class="flex-container">
+            <div class="flex-thirds">
+                <button class="btn-delete-plan red-background" v-on:click="onClickDeletePlanOrganiser" v-bind:disabled="disabled">Delete Plan</button>
+            </div>
+
+            <div class="flex-thirds text-align-center">
+                <button class="btn-finalise" v-on:click="onClickFinaliseEventOrganiser" v-bind:disabled="disabled">Finalise Event</button>
+            </div>
+
+            <div class="flex-thirds text-align-right">
+                <button class="btn-save" v-on:click="onClickUpdatePlanOrganiser" v-bind:disabled="disabled">Update Plan</button>
+            </div>
+        </div>
+
+    </main>
+
+    <footer>
+    </footer>
+
+</body>
+
+</html>

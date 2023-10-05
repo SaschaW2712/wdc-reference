@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset = "UTF-8">
+    <title>Calendar App | Sign In</title>
+    <link rel="stylesheet" type="text/css" href="/../stylesheets/style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Chelsea+Market|Roboto">
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+    <script src="/vueobjects/signin.js" defer></script>
+</head>
+
+<body>
+    <!-- Header contains Logo, Navigation Bar with tabs: Event (Users) Account-->
+    <header>
+        <div id="logo">Calendar App</div>
+        <div id="navigation">
+        </div>
+    </header>
+    <main style="text-align:center" id="vue_signin">
+        <div id="manual-sign-in">
+
+            <h2>Admin Sign In</h2>
+            <hr>
+
+            <div class="labelled-text-entry">
+                <label for="username" class="labelled-text-entry-label">Email</label>
+                <input type="text" class="labelled-text-entry-input" name="email" v-model="email"/>
+            </div>
+
+            <div class="labelled-text-entry">
+                <label for="pwd" class="labelled-text-entry-label">Password</label>
+                <input type="password" class="labelled-text-entry-input" name="pwd" v-model="password"/>
+            </div>
+
+            <div class="back-forward-btn-group">
+                <div class="nav-button">
+                    <a href="/" class="float-right">Back</a>
+                </div>
+                <button id="btn-forward" v-on:click="onClickAdminSignIn">Log in</button>
+            </div>
+        </div>
+    </main>
+
+    <footer></footer>
+
+</body>
+
+</html>

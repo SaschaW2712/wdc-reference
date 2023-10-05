@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset = "UTF-8">
+    <title>Calendar App | Account | Manage </title>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Chelsea+Market|Roboto">
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+    <script src="/vueobjects/manage_info.js" defer></script>
+</head>
+
+<body>
+    <!-- Header contains Logo, Navigation Bar with tabs: Event (Users) Account-->
+    <header>
+        <div id="logo">Calendar App</div>
+        <div id="navigation">
+            <div class="max-content-width">
+                <ul>
+                    <li><a href="/user/events">Events</a></li>
+                    <li class="float-right active"><a href="/user/account">Account</a></li>
+                  </ul>
+            </div>
+        </div>
+    </header>
+
+    <main id="vue_manage_info">
+        <div class="nav-button">
+            <a href="/user/account/" class="float-left">Back</a>
+        </div>
+
+        <h2>Manage User Information</h2>
+        <hr/>
+        <div class="labelled-text-entry">
+            <label for="username" class="labelled-text-entry-label">New Username</label>
+            <input type="text" class="labelled-text-entry-input" name="username" v-model="new_username"/>
+        </div>
+        <div class="text-align-right">
+            <button v-on:click="onClickChangeUsername">Change Username</button>
+        </div>
+        <h2>Change Email</h2>
+        <hr/>
+        <div class="labelled-text-entry">
+            <label for="email" class="labelled-text-entry-label">New Email</label>
+            <input type="email" class="labelled-text-entry-input" name="email" v-model="new_email"/>
+        </div>
+        <div class="labelled-text-entry">
+            <label for="pwd1" class="labelled-text-entry-label">Password</label>
+            <input type="password" class="labelled-text-entry-input" name="pwd1" v-model="password1"/>
+        </div>
+        <div class="text-align-right">
+            <button v-on:click="onClickChangeEmail">Change Email</button>
+        </div>
+        <h2>Change Password</h2>
+        <hr/>
+        <div class="labelled-text-entry">
+            <label for="new_pwd" class="labelled-text-entry-label">New Password</label>
+            <input type="password" class="labelled-text-entry-input" name="new_pwd" v-model="new_password"/>
+        </div>
+        <div class="labelled-text-entry">
+            <label for="old_pwd" class="labelled-text-entry-label">Current Password</label>
+            <input type="password" class="labelled-text-entry-input" name="old_pwd" v-model="password2"/>
+        </div>
+        <div class="text-align-right">
+            <button v-on:click="onClickChangePassword">Change Password</button>
+        </div>
+        <h2>Delete Account</h2>
+        <hr/>
+        <div class="labelled-text-entry">
+            <label for="pwd2" class="labelled-text-entry-label">Password</label>
+            <input type="password" class="labelled-text-entry-input" name="pwd2" v-model="password3"/>
+        </div>
+        <div class="text-align-right">
+            <button class="red-background" v-on:click="onClickDeleteAccount">Delete Account</button>
+        </div>
+    </main>
+
+    <footer></footer>
+
+</body>
+
+</html>

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset = "UTF-8">
+    <title>Calendar App | Events</title>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Chelsea+Market|Roboto">
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+    <script src="/vueobjects/events.js" defer></script>
+</head>
+
+
+<body>
+    <!-- Header contains Logo, Navigation Bar with tabs: Event (Users) Account-->
+    <header>
+        <div id="logo">Calendar App</div>
+        <div id="navigation">
+            <div class="max-content-width">
+                <ul>
+                    <li><a href="/admin/events">Events</a></li>
+                    <li><a href="/admin/users">Users</a></li>
+                    <li class="float-right"><a href="/admin/account">Account</a></li>
+                  </ul>
+            </div>
+        </div>
+    </header>
+
+    <main style="position:auto" id="vue_events">
+        <h2>Event Plans</h2>
+        <hr>
+
+        <div class="plans-grid">
+            <div class="event-row">
+
+                <div class="event-card flex-thirds" v-for="plan in plan_data">
+                    <h4 class="event-title">{{plan.name}}</h4>
+                    <p>{{plan.organiser}}</p>
+                    <p>{{plan.date}}</p>
+                    <p>{{plan.time}}</p>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- <div class="plans-grid">
+            <div class="event-row">
+
+                <div class="event-card">
+                    <h4 class="event-title">Plan: Alice's 21th</h4>
+                    <p>User: SherlockGnome</p>
+                    <p>3 March 2022 - 5 March 2022</p>
+                    <p>9am - 5pm</p>
+                </div>
+
+                <div class="event-card flex-thirds">
+                    <h4 class="event-title">Plan: Alice's 21th</h4>
+                    <p>User: SherlockGnome</p>
+                    <p>3 March 2022 - 5 March 2022</p>
+                    <p>9am - 5pm</p>
+                </div>
+
+                <div class="event-card flex-thirds">
+                    <h4 class="event-title">Plan: Alice's 21th</h4>
+                    <p>User: SherlockGnome</p>
+                    <p>3 March 2022 - 5 March 2022</p>
+                    <p>9am - 5pm</p>
+                </div>
+
+            </div>
+
+            <div class="event-row">
+
+                <div class="event-card flex-thirds">
+                    <h4 class="event-title">Plan: Alice's 21th</h4>
+                    <p>User: SherlockGnome</p>
+                    <p>3 March 2022 - 5 March 2022</p>
+                    <p>9am - 5pm</p>
+                </div>
+
+                <div class="event-card flex-thirds">
+                    <h4 class="event-title">Plan: Alice's 21th</h4>
+                    <p>User: SherlockGnome</p>
+                    <p>3 March 2022 - 5 March 2022</p>
+                    <p>9am - 5pm</p>
+                </div>
+
+            </div>
+        </div> -->
+
+        <span style="padding:50dp"></span>
+        <h2>Finalised Events</h2>
+        <hr>
+
+        <div class="plans-grid">
+            <div class="event-row">
+
+                <div class="event-card flex-thirds" v-for="event in event_data">
+                    <h4 class="event-title">{{event.name}}</h4>
+                    <p>{{event.organiser}}</p>
+                    <p>{{event.date}}</p>
+                    <p>{{event.time}}</p>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- <div class="events-grid">
+            <div class="event-row">
+
+                <div class="event-card flex-thirds">
+                    <h4 class="event-title">Bob's 25rd</h4>
+                    <p>User: RomeoJulia</p>
+                    <p>3 March 2022</p>
+                    <p>9am - 10am</p>
+                </div>
+
+                <div class="event-card flex-thirds">
+                    <h4 class="event-title">Bob's 25rd</h4>
+                    <p>User: RomeoJulia</p>
+                    <p>3 March 2022</p>
+                    <p>9am - 10am</p>
+                </div>
+
+                <div class="event-card flex-thirds">
+                    <h4 class="event-title">Bob's 25rd</h4>
+                    <p>User: RomeoJulia</p>
+                    <p>3 March 2022</p>
+                    <p>9am - 10am</p>
+                </div>
+            </div>
+
+            <div class="event-row">
+
+                <div class="event-card flex-thirds">
+                    <h4 class="event-title">Bob's 25rd</h4>
+                    <p>User: RomeoJulia</p>
+                    <p>3 March 2022</p>
+                    <p>9am - 10am</p>
+                </div>
+
+                <div class="event-card flex-thirds">
+                    <h4 class="event-title">Bob's 25rd</h4>
+                    <p>User: RomeoJulia</p>
+                    <p>3 March 2022</p>
+                    <p>9am - 10am</p>
+                </div>
+
+            </div>
+        </div> -->
+
+    </main>
+
+    <footer></footer>
+
+</body>
+
+</html>
